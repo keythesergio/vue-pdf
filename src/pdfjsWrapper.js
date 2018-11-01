@@ -79,8 +79,14 @@ export default function(PDFJS) {
 			pdfDoc = null;
 		}
 
-		this.setCanvasHeight = function(h) {
-			canvasElt.style.height = h
+		this.setCanvasHeight = function(h,w,kh,kw) {
+			if (kh<=kw) {
+				canvasElt.style.height = h + 'px'
+				canvasElt.style.width = w / kw * kh + 'px'
+			} else {
+				canvasElt.style.height = h / kh * kw + 'px'
+				canvasElt.style.width = w + 'px'
+			}
 		}
 
 		this.getCanvas = function() {
@@ -88,8 +94,8 @@ export default function(PDFJS) {
 		}
 		
 		this.getResolutionScale = function() {
-			
-			return canvasElt.offsetWidth / canvasElt.width;
+			return Math.min(canvasElt.offsetWidth / canvasElt.width,canvasElt.offsetHeight / canvasElt.height);
+			// return canvasElt.offsetWidth / canvasElt.width;
 		}
 
 		this.printPage = function(dpi, pageNumberOnly) {
