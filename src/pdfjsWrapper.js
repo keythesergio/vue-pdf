@@ -80,7 +80,7 @@ export default function(PDFJS) {
 		}
 
 		this.setCanvasHeight = function(h,w,kh,kw) {
-			if (kh>=kw) {
+			if (kh<=kw) {
 				canvasElt.style.height = h + 'px'
 				canvasElt.style.width = w / kw * kh + 'px'
 			} else {
