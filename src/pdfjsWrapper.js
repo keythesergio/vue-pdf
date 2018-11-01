@@ -57,8 +57,7 @@ export default function(PDFJS) {
 		var canceling = false;
 		var canvasElt = document.createElement('canvas');
 		canvasElt.style.display = 'block';
-		canvasElt.style.maxHeight = '100%';
-		canvasElt.style.maxWidth = '100%';
+		canvasElt.style.height = '100%';
 		canvasParent.appendChild(canvasElt);
 
 		function clearCanvas() {
