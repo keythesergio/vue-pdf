@@ -85,7 +85,7 @@ export default function(pdfjsWrapper) {
 				}
 
 				this.$refs.annotationLayer.style.transform = 'scale('+resolutionScale+')';
-			}
+			},
 			resize: function(size) {
 		
 				// check if the element is attached to the dom tree || resizeSensor being destroyed
