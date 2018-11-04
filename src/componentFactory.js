@@ -67,7 +67,7 @@ export default function(pdfjsWrapper) {
 			resizeByScale(scale) {
 		
 				// check if the element is attached to the dom tree || resizeSensor being destroyed
-				if ( this.$el.parentNode === null || (size.width === 0 && size.height === 0) )
+				if ( this.$el.parentNode === null )
 					return;
 
 				// on IE10- canvas height must be set
