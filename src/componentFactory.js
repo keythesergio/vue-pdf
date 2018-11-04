@@ -60,6 +60,32 @@ export default function(pdfjsWrapper) {
 			},
 		},
 		methods: {
+			getResolutionScale () {
+				return Math.min(this.pdf.getCanvas().offsetHeight / this.pdf.getCanvas().height,
+								this.pdf.getCanvas().offsetWidth / this.pdf.getCanvas().width)
+			},
+			resizeByScale(scale) {
+		
+				// check if the element is attached to the dom tree || resizeSensor being destroyed
+				if ( this.$el.parentNode === null || (size.width === 0 && size.height === 0) )
+					return;
+
+				// on IE10- canvas height must be set
+				// this.pdf.setCanvasHeight(this.pdf.getCanvas().offsetWidth * (this.pdf.getCanvas().height / this.pdf.getCanvas().width) + 'px');
+				this.pdf.setCanvasHeight(this.pdf.getCanvas().offsetHeight,
+										this.pdf.getCanvas().offsetWidth,
+										scale,
+										scale);
+				// update the page when the resolution is too poor
+				var resolutionScale = this.pdf.getResolutionScale();
+				
+				if ( resolutionScale < 0.85 || resolutionScale > 1.15 )
+				{
+					this.pdf.renderPage(this.rotate);
+				}
+
+				this.$refs.annotationLayer.style.transform = 'scale('+resolutionScale+')';
+			}
 			resize: function(size) {
 		
 				// check if the element is attached to the dom tree || resizeSensor being destroyed
