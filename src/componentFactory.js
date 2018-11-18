@@ -94,10 +94,10 @@ export default function(pdfjsWrapper) {
 
 				// on IE10- canvas height must be set
 				// this.pdf.setCanvasHeight(this.pdf.getCanvas().offsetWidth * (this.pdf.getCanvas().height / this.pdf.getCanvas().width) + 'px');
-				this.pdf.setCanvasHeight(this.pdf.getCanvas().offsetHeight,
-										this.pdf.getCanvas().offsetWidth,
-										this.pdf.getCanvas().offsetHeight / this.pdf.getCanvas().height,
-										this.pdf.getCanvas().offsetWidth / this.pdf.getCanvas().width);
+				this.pdf.setCanvasHeight(size.height,
+										size.width,
+										size.height / this.pdf.getCanvas().height,
+										size.width / this.pdf.getCanvas().width);
 				// update the page when the resolution is too poor
 				var resolutionScale = this.pdf.getResolutionScale();
 				
